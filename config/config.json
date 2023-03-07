@@ -1,0 +1,45 @@
+{
+    "collectors": {
+        "GoogleSearch": {
+            "enabled": true,
+            "api_key": "INSERT_API_KEY_HERE",
+            "lookup_url": "https://www.google.com",
+            "engine_id": "INSERT_SEARCH_ENGINE_ID_HERE"
+        },
+        "HybridAnalysis": {
+            "enabled": true,
+            "api_key": "INSERT_API_KEY_HERE",
+            "api_base": "https://www.hybrid-analysis.com/api/v2{endpoint}",
+            "lookup_url": "https://www.hybrid-analysis.com/search?query={ioc}"
+        },
+        "VirusTotal": {
+            "enabled": true,
+            "api_key": "INSERT_API_KEY_HERE",
+            "lookup_url": "https://www.virustotal.com/gui/file/{ioc}"
+        },
+        "MalwareBazaar": {
+            "enabled": true,
+            "api_key": "INSERT_API_KEY_HERE",
+            "lookup_url": "https://bazaar.abuse.ch/sample/{ioc}"
+        },
+        "MetaDefender": {
+            "enabled": true,
+            "api_key": "INSERT_API_KEY_HERE",
+            "lookup_url": "https://api.metadefender.com/v4/hash/{ioc}"
+        }
+
+    },
+    "notifiers": {
+        "Console":{
+            "enabled": true
+        },
+        "Teams": {
+            "enabled": false,
+            "webhook": "INSERT_WEBHOOK_URL_HERE"
+        },
+        "Slack": {
+            "enabled": false,
+            "webhook": "INSERT_WEBHOOK_URL_HERE"
+        }
+    }
+}
