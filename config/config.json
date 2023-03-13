@@ -25,7 +25,8 @@
         "MetaDefender": {
             "enabled": true,
             "api_key": "INSERT_API_KEY_HERE",
-            "lookup_url": "https://api.metadefender.com/v4/hash/{ioc}"
+            "api_base": "https://api.metadefender.com/v4/hash/{ioc}",
+            "lookup_url": "https://metadefender.opswat.com/results/file/{ioc}/hash/overview"
         }
 
     },

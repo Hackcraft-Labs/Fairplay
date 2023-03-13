@@ -13,7 +13,7 @@ class MetaDefender(Collector):
 				"apikey": self.get_key("api_key"),
 			}
 
-			response = requests.request("GET", self.get_key("lookup_url").format(ioc=ioc['file_hash']), headers=headers)
+			response = requests.request("GET", self.get_key("api_base").format(ioc=ioc['file_hash']), headers=headers)
 			
 			detection = response.json()
 
