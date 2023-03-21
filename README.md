@@ -31,9 +31,19 @@ The following list of channels have notifiers implemente for them in Fairplay:
 
 ### Setup
 
-Install the requirements (probably in a virtual environment) as usual with:
+Install the requirements in a virtual environment:
 
-`python -m pip install -r requirements.txt`
+```
+python -m pip install pipenv
+python -m pipenv install
+```
+
+Run the tool within the virtual environment:
+
+```
+pipenv shell
+python main.py
+```
 
 ### Monitoring IOCs
 
