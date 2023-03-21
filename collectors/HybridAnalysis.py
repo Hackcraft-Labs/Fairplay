@@ -23,6 +23,10 @@ class HybridAnalysis(Collector):
             # Search for hash
             result = requests.post(self.get_key("api_base").format(
                 endpoint="/search/hash"), headers=headers, data=data)
+            
+            if result.status_code != 200:
+                print(f"[HybridAnalysis] {result.json()['message']}\n")
+                return
 
             detections = result.json()
 
