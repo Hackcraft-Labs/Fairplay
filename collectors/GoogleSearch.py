@@ -10,11 +10,11 @@ class GoogleSearch(Collector):
 
     def execute(self, ioc):
         try:
-            keywords = ["malware", "APT", "malicious"]
+            keywords = ["malware", "APT", "malicious", "virus"]
 
             api_key = self.get_key("api_key")
             ioc_hash = ioc['file_hash']
-            cse_id = self.get("engine_id")
+            cse_id = self.get_key("engine_id")
 
             service = build("customsearch", "v1", developerKey=api_key)
             res = service.cse().list(q=ioc_hash, cx=cse_id, num=10).execute()
