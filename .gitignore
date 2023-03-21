@@ -164,3 +164,4 @@ cython_debug/
 
 detections/detections.json
 config/config.json
+ioc/*.json
