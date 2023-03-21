@@ -27,6 +27,7 @@ The following list of intel sources have collectors implemented for them in Fair
 The following list of channels have notifiers implemente for them in Fairplay:
 - Microsoft Teams
 - Slack
+- Pushover
 - Terminal Console (stdout) 
 
 ### Setup
@@ -116,8 +117,9 @@ The following key is verified on notifiers that POST to a webhook:
 
 ### Contributors
 | Contributor        | Module                                                                      |
-|--------------------|-----------------------------------------------------------------------------|
+| ------------------ | --------------------------------------------------------------------------- |
 | Nick Aliferopoulos | Core, VirusTotal/HybridAnalysis Collectors, Microsoft Teams/Slack Notifiers |
 | Despoina Choctoula | Google Search Collector                                                     |
 | Dimitris Lazarakis | MalwareBazaar Collector                                                     |
 | Nomiki Parginou    | MetaDefender Collector, IOC Generation Utility                              |
+| Alexandros Vavakos | Pushover Notifier                                                           |
