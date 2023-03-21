@@ -34,6 +34,5 @@ class GoogleSearch(Collector):
                         self.extra("Reference to malware or APT found. Result title: " + reference['htmlTitle'] + ". More info: "+ reference['link'])
             if counter > 0:
                 self.report(ioc, reference)
-        except Exception as e:
-            print(e)
-
+        except Exception as exc:
+            print(f"[GoogleSearch] {json.loads(exc.content).get('error').get('message')}\n")

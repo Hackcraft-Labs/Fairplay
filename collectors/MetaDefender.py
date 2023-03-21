@@ -71,5 +71,5 @@ class MetaDefender(Collector):
 			if undetected > 0:
 				undetected_str = "Marked as \"No Threat Detected\" on {n} engines".format(n=undetected)
 				self.extra(undetected_str)
-		except:
-			pass
+		except Exception as exc:
+			print(f"[MetaDefender] {exc}\n")

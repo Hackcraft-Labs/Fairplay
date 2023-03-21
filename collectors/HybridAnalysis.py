@@ -40,5 +40,5 @@ class HybridAnalysis(Collector):
                         break
 
             self.report(ioc)
-        except:
-            pass
+        except Exception as exc:
+            print(f"[HybridAnalysis] {exc}\n")

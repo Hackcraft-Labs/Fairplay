@@ -23,7 +23,7 @@ class Collector(Module):
 
             self.extra_info = []
             return
-        
+
         self.extra(self.get_key(
             "lookup_url").format(ioc=ioc["file_hash"]))
 
