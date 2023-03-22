@@ -41,6 +41,17 @@
         "Slack": {
             "enabled": false,
             "webhook": "INSERT_WEBHOOK_URL_HERE"
+        },
+        "Pushover": {
+            "enabled": false,
+            "project": "INSERT_PROJECT_NAME_HERE",
+            "api_base": "https://api.pushover.net/1/messages.json",
+            "api_key": "INSERT_API_KEY_HERE",
+            "user_keys": [
+                "INSERT_USER_KEY_1_HERE",
+                "INSERT_USER_KEY_2_HERE",
+                "INSERT_USER_KEY_3_HERE"
+            ]
         }
     }
 }

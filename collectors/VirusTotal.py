@@ -21,5 +21,6 @@ class VirusTotal(Collector):
                     n=identified.last_analysis_stats["undetected"]))
 
                 self.report(ioc)
-            except (vt.APIError):
-                pass
+            except vt.error.APIError as e:
+                if e.code != "NotFoundError":
+                    print(f"[VirusTotal] {e.message}\n")

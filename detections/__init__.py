@@ -11,7 +11,7 @@ detections = []
 
 def load_detections():
     global detections
-    print("[*] Loading detections...")
+    print("[*] Loading detections...\n")
 
     # Load all detections
     try:
