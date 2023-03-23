@@ -24,6 +24,5 @@ class Pushover(Notifier):
             for user_key in self.get_key("user_keys"):
                 pushover_data = {'token': self.get_key("api_key"), 'user': user_key, 'message': message}
                 requests.post(self.get_key("api_base"), data=pushover_data, headers={'Content-Type': 'application/x-www-form-urlencoded'})
-        except Exception as e:
-            print(e)
-            print("[!] Could not notify over {name}! Please check for sanity.".format(name=self.NAME))
+        except Exception as exc:
+            print(f"[{self.Name}] {exc}\n")

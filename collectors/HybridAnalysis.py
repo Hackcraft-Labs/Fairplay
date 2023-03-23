@@ -41,4 +41,4 @@ class HybridAnalysis(Collector):
 
             self.report(ioc)
         except Exception as exc:
-            print(f"[HybridAnalysis] {exc}\n")
+            print(f"[{self.Name}] {exc}\n")

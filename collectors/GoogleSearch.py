@@ -35,4 +35,4 @@ class GoogleSearch(Collector):
             if counter > 0:
                 self.report(ioc, reference)
         except Exception as exc:
-            print(f"[GoogleSearch] {json.loads(exc.content).get('error').get('message')}\n")
+            print(f"[{self.Name}] {json.loads(exc.content).get('error').get('message')}\n")

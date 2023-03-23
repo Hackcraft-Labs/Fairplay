@@ -14,6 +14,5 @@ class Slack(Notifier):
             slack_data = {'text': str(text)}
             requests.post(self.get_key["webhook"], data=json.dumps(slack_data),
                           headers={'Content-Type': 'application/json'})
-        except:
-            print("[!] Could not notify over {name}! Please check for sanity.".format(
-                name=self.NAME))
+        except Exception as exc:
+            print(f"[{self.Name}] {exc}\n")

@@ -15,5 +15,4 @@ class Teams(Notifier):
             myTeamsMessage.text(str(text))
             myTeamsMessage.send()
         except:
-            print("[!] Could not notify over {name}! Please check for sanity.".format(
-                name=self.NAME))
+            print(f"[{self.Name}] {exc}\n")
