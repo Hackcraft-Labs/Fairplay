@@ -15,12 +15,14 @@ class Pushover(Notifier):
         try:
             message = text.split(" Extra Info:")[0]
             extra = re.findall("http[s]?://[^\s]+", text)[0]
-            signature = re.findall("\(.*\)", message)[0]
-            message = message.replace("Detected ", f"[{self.get_key('project')}] A wild ").replace(signature, "appeared") + "\n" + extra
+            signature = re.findall(" \(.*\)", message)[0]
+            message = message.replace("Detected ", f"[{self.get_key('project')}] A wild '") \
+                             .replace(signature, "' appeared") \
+                             .replace(" which was previously known,", "") \
+                             .replace(" new source", "") + "\n" + extra
 
             for user_key in self.get_key("user_keys"):
                 pushover_data = {'token': self.get_key("api_key"), 'user': user_key, 'message': message}
                 requests.post(self.get_key("api_base"), data=pushover_data, headers={'Content-Type': 'application/x-www-form-urlencoded'})
-        except Exception as e:
-            print(e)
-            print("[!] Could not notify over {name}! Please check for sanity.".format(name=self.NAME))
+        except Exception as exc:
+            print(f"[{self.Name}] {exc}\n")

@@ -23,4 +23,4 @@ class VirusTotal(Collector):
                 self.report(ioc)
             except vt.error.APIError as e:
                 if e.code != "NotFoundError":
-                    print(f"[VirusTotal] {e.message}\n")
+                    print(f"[{self.Name}] {e.message}\n")
