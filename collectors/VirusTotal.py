@@ -1,6 +1,6 @@
-from collectors import Collector
-
 import vt
+
+from collectors import Collector
 
 
 class VirusTotal(Collector):
@@ -23,4 +23,4 @@ class VirusTotal(Collector):
                 self.report(ioc)
             except vt.error.APIError as e:
                 if e.code != "NotFoundError":
-                    print(f"[{self.Name}] {e.message}\n")
+                    print(f"[{self.NAME}] {e.message}\n")

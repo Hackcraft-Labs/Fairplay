@@ -1,4 +1,5 @@
 import re
+
 import requests
 
 from notifiers import Notifier
@@ -25,4 +26,4 @@ class Pushover(Notifier):
                 pushover_data = {'token': self.get_key("api_key"), 'user': user_key, 'message': message}
                 requests.post(self.get_key("api_base"), data=pushover_data, headers={'Content-Type': 'application/x-www-form-urlencoded'})
         except Exception as exc:
-            print(f"[{self.Name}] {exc}\n")
+            print(f"[{self.NAME}] {exc}\n")

@@ -11,4 +11,4 @@ class Console(Notifier):
         try:
             print("[+] {}\n".format(text))
         except Exception as exc:
-            print(f"[{self.Name}] {exc}\n")
+            print(f"[{self.NAME}] {exc}\n")

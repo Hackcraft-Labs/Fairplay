@@ -1,7 +1,8 @@
 import re
-from collectors import Collector
 
 import requests
+
+from collectors import Collector
 
 
 class HybridAnalysis(Collector):
@@ -41,4 +42,4 @@ class HybridAnalysis(Collector):
 
             self.report(ioc)
         except Exception as exc:
-            print(f"[{self.Name}] {exc}\n")
+            print(f"[{self.NAME}] {exc}\n")

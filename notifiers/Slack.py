@@ -1,5 +1,6 @@
-import requests
 import json
+
+import requests
 
 from notifiers import Notifier
 
@@ -15,4 +16,4 @@ class Slack(Notifier):
             requests.post(self.get_key["webhook"], data=json.dumps(slack_data),
                           headers={'Content-Type': 'application/json'})
         except Exception as exc:
-            print(f"[{self.Name}] {exc}\n")
+            print(f"[{self.NAME}] {exc}\n")

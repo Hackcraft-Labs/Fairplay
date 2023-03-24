@@ -1,6 +1,9 @@
-from collectors import Collector
-from googleapiclient.discovery import build
 import json
+
+from googleapiclient.discovery import build
+
+from collectors import Collector
+
 
 class GoogleSearch(Collector):
 
@@ -35,4 +38,4 @@ class GoogleSearch(Collector):
             if counter > 0:
                 self.report(ioc, reference)
         except Exception as exc:
-            print(f"[{self.Name}] {json.loads(exc.content).get('error').get('message')}\n")
+            print(f"[{self.NAME}] {json.loads(exc.content).get('error').get('message')}\n")

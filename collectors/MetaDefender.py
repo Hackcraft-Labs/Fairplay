@@ -1,4 +1,5 @@
 import requests
+
 from collectors import Collector
 
 
@@ -72,4 +73,4 @@ class MetaDefender(Collector):
 				undetected_str = "Marked as \"No Threat Detected\" on {n} engines".format(n=undetected)
 				self.extra(undetected_str)
 		except Exception as exc:
-			print(f"[{self.Name}] {exc}\n")
+			print(f"[{self.NAME}] {exc}\n")
