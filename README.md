@@ -123,3 +123,7 @@ The following key is verified on notifiers that POST to a webhook:
 | Dimitris Lazarakis | MalwareBazaar Collector                                                     |
 | Nomiki Parginou    | MetaDefender Collector, IOC Generation Utility                              |
 | Alexandros Vavakos | Pushover Notifier                                                           |
+
+### Community
+
+Join the Hackcraft community discord server [here](https://discord.gg/ETas656jJ7). On the server you can receive support and discuss issues related to Fairplay.
