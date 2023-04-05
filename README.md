@@ -126,4 +126,4 @@ The following key is verified on notifiers that POST to a webhook:
 
 ### Community
 
-Join the Hackcraft community discord server [here](https://discord.gg/ETas656jJ7). On the server you can receive support and discuss issues related to Fairplay.
+Join the Hackcraft community discord server [here](https://discord.gg/KZZfsnQsja). On the server you can receive support and discuss issues related to Fairplay.
