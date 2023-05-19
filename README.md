@@ -115,6 +115,10 @@ The following key is verified on notifiers that POST to a webhook:
 | ------- | ------------------------------------------------------- |
 | webhook | URL to the channel which will be used for notifications |
 
+### Detailed Analysis
+
+A more detailed analysis of Fairplay and its features can be found [on our blog](https://www.hackcraft.gr/2023/05/introducing-fairplay/).
+
 ### Contributors
 | Contributor        | Module                                                                      |
 | ------------------ | --------------------------------------------------------------------------- |
