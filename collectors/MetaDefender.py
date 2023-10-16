@@ -29,7 +29,13 @@ class MetaDefender(Collector):
 			if "error" in detection:
 				if "messages" in detection["error"]:
 					for msg in detection["error"]["messages"]:
-						if "not found" in msg:
+						if "The hash was not found" in msg:
+							return
+
+			if "process_info" in detection:
+				if "verdicts" in detection["process_info"]:
+					for msg in detection["process_info"]["verdicts"]:
+						if "No Threat Detected" in msg:
 							return
 
 			threat = 0
@@ -62,7 +68,7 @@ class MetaDefender(Collector):
 
 			self.report(ioc)
 
-			# print("Malware {name} with hash {hash} was uploaded on MetaDefender on {date}!".format(name=ioc['name'], hash=ioc['file_hash'], date=date))
+			#print("Malware {name} with hash {hash} was uploaded on MetaDefender on {date}!".format(name=ioc['name'], hash=ioc['file_hash'], date=date))
 			if threat > 0:
 				threat_str = "Marked as \"Theat Detected\" on {n} engines".format(n=threat)
 				self.extra(threat_str)
@@ -72,5 +78,5 @@ class MetaDefender(Collector):
 			if undetected > 0:
 				undetected_str = "Marked as \"No Threat Detected\" on {n} engines".format(n=undetected)
 				self.extra(undetected_str)
-		except Exception as exc:
-			print(f"[{self.NAME}] {exc}\n")
+		except:
+			pass
