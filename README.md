@@ -28,7 +28,8 @@ The following list of channels have notifiers implemente for them in Fairplay:
 - Microsoft Teams
 - Slack
 - Pushover
-- Terminal Console (stdout) 
+- Terminal Console (stdout)
+- Mattermost
 
 ### Setup
 
