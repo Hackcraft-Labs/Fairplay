@@ -24,12 +24,12 @@ The following list of intel sources have collectors implemented for them in Fair
 
 ### Notifiers
 
-The following list of channels have notifiers implemente for them in Fairplay:
+The following list of channels have notifiers implemented for them in Fairplay:
 - Microsoft Teams
 - Slack
 - Pushover
-- Terminal Console (stdout)
 - Mattermost
+- Terminal Console (stdout)
 
 ### Setup
 
