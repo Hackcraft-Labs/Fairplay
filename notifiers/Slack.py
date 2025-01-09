@@ -13,7 +13,7 @@ class Slack(Notifier):
     def execute(self, text):
         try:
             slack_data = {'text': str(text)}
-            requests.post(self.get_key["webhook"], data=json.dumps(slack_data),
+            requests.post(self.get_key("webhook"), data=json.dumps(slack_data),
                           headers={'Content-Type': 'application/json'})
         except Exception as exc:
             print(f"[{self.NAME}] {exc}\n")
