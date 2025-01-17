@@ -27,6 +27,7 @@ The following list of intel sources have collectors implemented for them in Fair
 The following list of channels have notifiers implemented for them in Fairplay:
 - Microsoft Teams
 - Slack
+- Discord
 - Pushover
 - Mattermost
 - Terminal Console (stdout)
