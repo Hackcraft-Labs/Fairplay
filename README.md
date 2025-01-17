@@ -129,7 +129,7 @@ A more detailed analysis of Fairplay and its features can be found [on our blog]
 | Dimitris Lazarakis | MalwareBazaar Collector                                                     |
 | Nomiki Parginou    | MetaDefender Collector, IOC Generation Utility                              |
 | Alexandros Vavakos | Pushover Notifier                                                           |
-| Nikos Vourdas      | Mattermost Notifier                                                         |
+| Nikos Vourdas      | Mattermost, Discord Notifiers                                                        |
 
 ### Community
 
