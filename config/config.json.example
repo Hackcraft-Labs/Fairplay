@@ -42,6 +42,10 @@
             "enabled": false,
             "webhook": "INSERT_WEBHOOK_URL_HERE"
         },
+         "Discord": {
+            "enabled": false,
+            "webhook": "INSERT_WEBHOOK_URL_HERE"
+        },
         "Slack": {
             "enabled": false,
             "webhook": "INSERT_WEBHOOK_URL_HERE"
