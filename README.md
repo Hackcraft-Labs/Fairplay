@@ -37,7 +37,7 @@ The following list of channels have notifiers implemented for them in Fairplay:
 Install the requirements in a virtual environment:
 
 ```
-python -m pip install pipenv
+python -m pip install pipenv --break-system-packages
 python -m pipenv install
 ```
 
