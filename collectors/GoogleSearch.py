@@ -13,7 +13,7 @@ class GoogleSearch(Collector):
 
     def execute(self, ioc):
         try:
-            keywords = ["malware", "APT", "malicious", "virus"]
+            keywords = ["malware", "APT", "malicious"]
 
             api_key = self.get_key("api_key")
             ioc_hash = ioc['file_hash']
@@ -37,5 +37,23 @@ class GoogleSearch(Collector):
                         self.extra("Reference to malware or APT found. Result title: " + reference['htmlTitle'] + ". More info: "+ reference['link'])
             if counter > 0:
                 self.report(ioc, reference)
-        except Exception as exc:
-            print(f"[{self.NAME}] {json.loads(exc.content).get('error').get('message')}\n")
+        except Exception as e:
+            print(e)
+
+if __name__ == "__main__":
+    from ioc import load_iocs
+    from config import get_config
+    
+    get_config() 
+    
+    from notifiers import Console
+    Console.Console.CATEGORY = "notifiers"
+    Console.Console.NAME = "Console"
+    Console.Console()
+
+    GoogleSearch.CATEGORY = "collectors"
+    GoogleSearch.NAME = "GoogleSearch"
+    collector = GoogleSearch()
+
+    for ioc in load_iocs():
+        collector.execute(ioc)

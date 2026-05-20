@@ -1,5 +1,5 @@
-import os
 import json
+import os
 
 CONFIG_FILE = 'config/config.json'
 

@@ -1,6 +1,6 @@
-from module import Module
-from event import Events, subscribe_to_event
 from detections import register_detection
+from event import Events, subscribe_to_event
+from module import Module
 
 
 class Collector(Module):
@@ -23,7 +23,7 @@ class Collector(Module):
 
             self.extra_info = []
             return
-
+        
         self.extra(self.get_key(
             "lookup_url").format(ioc=ioc["file_hash"]))
 

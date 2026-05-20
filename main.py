@@ -5,12 +5,15 @@ import logging
 import schedule
 import traceback
 
+# Order matters!
 import module
 
 from ioc import schedule_iocs
 from event import Events, broadcast_event
 
 import cli
+
+#SLEEP_TIME = 1800
 
 if __name__ == "__main__":
     broadcast_event(Events.INITIALIZE)
@@ -22,6 +25,8 @@ if __name__ == "__main__":
             try:
                 schedule.run_pending()
                 time.sleep(1)
+                #hunt_iocs()
+                #time.sleep(SLEEP_TIME)
 
             except KeyboardInterrupt:
                 signal.signal(signal.SIGINT, cli.handler)

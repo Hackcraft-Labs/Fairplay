@@ -1,0 +1,27 @@
+.fp-form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--fp-space-4);
+	max-width: 760px;
+}
+
+.fp-form-grid {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+	gap: var(--fp-space-3);
+
+	@media (max-width: 760px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+.fp-form-actions {
+	display: flex;
+	gap: var(--fp-space-2);
+	padding-top: var(--fp-space-1);
+
+	@media (max-width: 560px) {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}

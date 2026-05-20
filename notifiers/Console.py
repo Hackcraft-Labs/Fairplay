@@ -1,5 +1,3 @@
-import json
-
 from notifiers import Notifier
 
 
@@ -10,5 +8,6 @@ class Console(Notifier):
     def execute(self, text):
         try:
             print("[+] {}\n".format(text))
-        except Exception as exc:
-            print(f"[{self.NAME}] {exc}\n")
+        except:
+            print("[!] Could not notify over {name}! Please check for sanity.".format(
+                name=self.NAME))

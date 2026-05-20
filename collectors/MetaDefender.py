@@ -80,3 +80,22 @@ class MetaDefender(Collector):
 				self.extra(undetected_str)
 		except:
 			pass
+
+if __name__ == "__main__":
+    from ioc import load_iocs
+    from config import get_config
+    
+    get_config() 
+    
+    from notifiers import Console
+    Console.Console.CATEGORY = "notifiers"
+    Console.Console.NAME = "Console"
+    Console.Console()
+
+    MetaDefender.CATEGORY = "collectors"
+    MetaDefender.NAME = "MetaDefender"
+
+    collector = MetaDefender()
+
+    for ioc in load_iocs():
+        collector.execute(ioc)

@@ -21,6 +21,23 @@ class VirusTotal(Collector):
                     n=identified.last_analysis_stats["undetected"]))
 
                 self.report(ioc)
-            except vt.error.APIError as e:
-                if e.code != "NotFoundError":
-                    print(f"[{self.NAME}] {e.message}\n")
+            except (vt.APIError):
+                pass
+
+if __name__ == "__main__":
+    from ioc import load_iocs
+    from config import get_config
+    
+    get_config() 
+    
+    from notifiers import Console
+    Console.Console.CATEGORY = "notifiers"
+    Console.Console.NAME = "Console"
+    Console.Console()
+
+    VirusTotal.CATEGORY = "collectors"
+    VirusTotal.NAME = "VirusTotal"
+    collector = VirusTotal()
+
+    for ioc in load_iocs():
+        collector.execute(ioc)

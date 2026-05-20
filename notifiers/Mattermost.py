@@ -24,5 +24,6 @@ class Mattermost(Notifier):
             webhook_url = self.get_key("webhook")
             message = str(text)
             send_message_to_mattermost(webhook_url, message)
-        except Exception as exc:
-            print(f"[{self.NAME}] {exc}\n")
+        except:
+            print("[!] Could not notify over {name}! Please check for sanity.".format(
+                name=self.NAME))

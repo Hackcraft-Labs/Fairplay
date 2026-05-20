@@ -1,0 +1,56 @@
+<mat-sidenav-container class="fp-shell">
+	<mat-sidenav
+		#sidenav
+		class="fp-sidenav"
+		[mode]="isMobile() ? 'over' : 'side'"
+		[opened]="!isMobile()"
+	>
+		<div class="fp-logo">
+			<span>FAIRPLAY</span>
+			<small>Threat Intel Console</small>
+		</div>
+	
+		<mat-nav-list>
+			<a
+				mat-list-item
+				routerLink="/"
+				routerLinkActive="active"
+				[routerLinkActiveOptions]="{ exact: true }"
+				(click)="isMobile() && sidenav.close()"
+			>
+				<mat-icon>dashboard</mat-icon>
+				<span>Dashboard</span>
+			</a>
+			<a
+				mat-list-item
+				routerLink="/detections"
+				routerLinkActive="active"
+				(click)="isMobile() && sidenav.close()"
+			>
+				<mat-icon>visibility</mat-icon>
+				<span>Detections</span>
+			</a>
+			<a
+				mat-list-item
+				routerLink="/iocs"
+				routerLinkActive="active"
+				(click)="isMobile() && sidenav.close()"
+			>
+				<mat-icon>security</mat-icon>
+				<span>IOCs</span>
+			</a>
+
+			<button mat-list-item type="button" (click)="resetDb(); isMobile() && sidenav.close()">
+				<mat-icon>delete_forever</mat-icon>
+				<span>Reset DB</span>
+			</button>
+		</mat-nav-list>
+	</mat-sidenav>
+	
+	<mat-sidenav-content>
+		<fp-toolbar (themeToggle)="toggleTheme()" (menuToggle)="sidenav.toggle()"></fp-toolbar>
+		<main class="fp-main">
+			<router-outlet></router-outlet>
+		</main>
+	</mat-sidenav-content>
+</mat-sidenav-container>

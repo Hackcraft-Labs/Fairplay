@@ -1,0 +1,26 @@
+.fp-card {
+	margin-bottom: var(--fp-space-4);
+	border: 1px solid var(--fp-border);
+	border-radius: var(--fp-radius-md);
+	background: var(--fp-surface);
+	box-shadow: var(--fp-shadow-sm);
+}
+
+.fp-card mat-card-header {
+	padding-bottom: var(--fp-space-3);
+}
+
+.fp-card mat-card-title {
+	font-size: 1rem;
+	font-weight: 650;
+	margin: 0;
+}
+
+.fp-card mat-card-subtitle {
+	margin-top: var(--fp-space-1);
+	color: var(--fp-text-muted);
+}
+
+.fp-card mat-card-content {
+	display: block;
+}

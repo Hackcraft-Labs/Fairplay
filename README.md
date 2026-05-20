@@ -5,7 +5,7 @@
 ██╔════╝██╔══██╗██║██╔══██╗██╔══██╗██║     ██╔══██╗╚██╗ ██╔╝
 █████╗  ███████║██║██████╔╝██████╔╝██║     ███████║ ╚████╔╝ 
 ██╔══╝  ██╔══██║██║██╔══██╗██╔═══╝ ██║     ██╔══██║  ╚██╔╝  
-██║     ██║  ██║██║██║  ██║██║     ███████╗██║  ██║   ██║  (1.4)
+██║     ██║  ██║██║██║  ██║██║     ███████╗██║  ██║   ██║  (2.0)
 
 "If you know, we know."
 ```
@@ -24,29 +24,40 @@ The following list of intel sources have collectors implemented for them in Fair
 
 ### Notifiers
 
-The following list of channels have notifiers implemented for them in Fairplay:
+The following list of channels have notifiers implemente for them in Fairplay:
 - Microsoft Teams
 - Slack
-- Discord
-- Pushover
-- Mattermost
-- Terminal Console (stdout)
+- Terminal Console (stdout) 
 
 ### Setup
 
-Install the requirements in a virtual environment:
+Install the requirements (probably in a virtual environment) using Python 3.10 as usual with:
 
-```
-python -m pip install pipenv
-python -m pipenv install
-```
+`python -m pip install -r requirements.txt`
 
-Run the tool within the virtual environment:
+#### Frontend (Angular)
 
-```
-pipenv shell
-python main.py
-```
+From `frontend/`:
+
+- `npm install`
+- `ng serve`
+
+The UI will be available at `http://localhost:4200`.
+
+#### Backend (FastAPI)
+
+From the repo root:
+
+- `uvicorn api.app:app --reload --host 127.0.0.1 --port 8000`
+
+The backend listens on `http://127.0.0.1:8000`.
+
+#### `useMockData`
+
+In `frontend/src/environments/environment.ts`, `useMockData` controls whether the frontend uses mock/example data instead of calling the real backend.
+
+- Default is `false` (use the real API via `/api`)
+- Set it to `true` if you want to see example/mock data in the UI
 
 ### Monitoring IOCs
 
@@ -62,7 +73,43 @@ Define your IOCs in JSON files in the `ioc` directory, named `ANYTHING.json`. Th
 
 API keys will need to be provided for each collector. You can do that in `config/config.json`. Multiple other keys can be configured there as well and required keys that are missing will be automatically detected.
 
-Finally, detections are stored in `detections/detections.json` so that detections are not repeated every time, but rather only when a new source is found that detects them. You can freely delete this file to reset the state and start from scratch.
+Finally, detections are now stored in a local SQLite database file named `fairplay.db` in the project root so that detections are not repeated every time, but rather only when a new source is found that detects them.
+
+On first run with this version, if a legacy `detections/detections.json` file exists and the SQLite database is empty, its contents will be automatically migrated into `fairplay.db`. After migration, the JSON file is no longer used.
+
+If you want to reset the detection state and start from scratch, you can:
+
+- **Web UI:** In the dashboard sidebar, use **Reset DB** and confirm. This clears all rows in the SQLite tables (`detections`, `detection_sources`, `iocs`) via the API (see below). **There is no authentication on this endpoint yet**—only use it in trusted environments or behind your own controls.
+- **CLI / manual:** Stop Fairplay and delete `fairplay.db`, or clear those tables with any SQLite client.
+
+### Web dashboard and HTTP API
+
+The repository includes an **Angular** frontend under `frontend/` and a **FastAPI** app under `api/`. The UI talks to the API over `/api` in dev (see `frontend/proxy.conf.json`), which strips the prefix and forwards to the backend (e.g. `uvicorn` on port `8000`).
+
+**API routes (high level):**
+
+| Prefix | Purpose |
+| ------ | ------- |
+| `/detections` | List, create, update, soft-delete, restore detections |
+| `/iocs` | List, create, update, delete IOCs (JSON files under `ioc/` plus DB mirror) |
+| `/ops/reset-db` | `POST` — clears all rows in the SQLite tables (same effect as wiping stored detections/IOC mirror data in the DB) |
+
+### CLI: IOCs and detections
+
+The interactive CLI (`cli`) supports more than IOC reloads. Detection-related commands (all backed by the same SQLite persistence as the collectors):
+
+| Command | Description |
+| ------- | ----------- |
+| `detections` | List current detections (name, hash, sources). |
+| `detections_add` | Add a manual detection (name, hash, optional collector). |
+| `detections_remove` | Soft-delete by hash (or permanent delete if you answer the prompt accordingly). |
+| `detections_restore` | Restore a soft-deleted detection. |
+| `detections_remove_source` | Remove one collector source from a detection. |
+| `detections_show` | Show one detection including per-source extra info. |
+| `detections_export` | Export detections to JSON (optional include soft-deleted). |
+| `detections_import` | Import detections from JSON. |
+
+Use `help` in the CLI for the full command list.
 
 ### Adding new collectors
 
@@ -130,6 +177,7 @@ A more detailed analysis of Fairplay and its features can be found [on our blog]
 | Nomiki Parginou    | MetaDefender Collector, IOC Generation Utility                              |
 | Alexandros Vavakos | Pushover Notifier                                                           |
 | Nikos Vourdas      | Mattermost/Discord Notifiers                                                |
+| Aldo Mihasi        | Database/Frontend/API                                                       |
 
 ### Community
 

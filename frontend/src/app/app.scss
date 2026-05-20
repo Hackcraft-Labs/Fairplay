@@ -1,0 +1,92 @@
+.fp-shell {
+	height: 100vh;
+	background: var(--fp-bg);
+}
+
+.fp-sidenav {
+	width: 264px;
+	background: var(--fp-sidebar-bg);
+	color: var(--fp-sidebar-text);
+	border-right: 1px solid var(--fp-sidebar-border);
+
+	.fp-logo {
+		padding: var(--fp-space-6) var(--fp-space-5) var(--fp-space-4);
+		border-bottom: 1px solid var(--fp-sidebar-border);
+
+		span {
+			display: block;
+			font-size: 0.95rem;
+			font-weight: 700;
+			letter-spacing: 0.14em;
+			color: #f8fafc;
+		}
+
+		small {
+			display: block;
+			margin-top: var(--fp-space-1);
+			font-size: 0.72rem;
+			text-transform: uppercase;
+			letter-spacing: 0.08em;
+			color: var(--fp-sidebar-muted);
+		}
+	}
+
+	::ng-deep .mat-mdc-list-base {
+		padding: var(--fp-space-3) var(--fp-space-2);
+	}
+
+	::ng-deep a.mat-mdc-list-item,
+	::ng-deep button.mat-mdc-list-item {
+		border-radius: var(--fp-radius-sm);
+		margin: 2px var(--fp-space-2);
+		color: var(--fp-sidebar-text);
+
+		.mat-icon {
+			margin-right: var(--fp-space-3);
+			color: #ffffff;
+		}
+
+		span {
+			color: #ffffff;
+		}
+
+		&:hover {
+			background: var(--fp-sidebar-hover);
+		}
+
+		&.active {
+			background: var(--fp-sidebar-active);
+		}
+	}
+
+	::ng-deep button.mat-mdc-list-item {
+		appearance: none;
+		border: none;
+		width: 100%;
+		justify-content: flex-start;
+		text-align: start;
+		font: inherit;
+		color: inherit;
+		cursor: pointer;
+		background: transparent;
+
+		&:focus-visible {
+			outline: 2px solid var(--fp-sidebar-muted);
+			outline-offset: 2px;
+		}
+	}
+}
+
+.fp-main {
+	padding: var(--fp-space-6);
+	background: var(--fp-bg);
+	min-height: calc(100vh - 64px);
+
+	@media (max-width: 960px) {
+		padding: var(--fp-space-4);
+	}
+}
+
+:host ::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+	background-color: rgba(2, 6, 23, 0.46);
+}

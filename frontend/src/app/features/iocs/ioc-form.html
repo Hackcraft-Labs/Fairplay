@@ -1,0 +1,50 @@
+<fp-card
+	[title]="isEditMode ? 'Edit IOC' : 'New IOC'"
+	[subtitle]="isEditMode ? 'Update indicator of compromise' : 'Add a new payload to monitor'"
+>
+	<fp-loading-spinner [visible]="loading"></fp-loading-spinner>
+
+	<form [formGroup]="form" (ngSubmit)="submit()" class="fp-form" *ngIf="!loading">
+		<div class="fp-form-grid">
+			<mat-form-field appearance="outline">
+				<mat-label>Name</mat-label>
+				<input matInput formControlName="name" [readonly]="isEditMode" />
+				<mat-hint *ngIf="isEditMode">Name cannot be changed when editing.</mat-hint>
+				<mat-error *ngIf="form.controls.name.hasError('required')">
+					Name is required
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>File hash</mat-label>
+				<input matInput formControlName="file_hash" />
+				<mat-error *ngIf="form.controls.file_hash.hasError('required')">
+					Hash is required
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>Poll interval (minutes)</mat-label>
+				<input matInput type="number" formControlName="poll_time" min="1" />
+				<mat-error *ngIf="form.controls.poll_time.hasError('required')">
+					Poll interval is required
+				</mat-error>
+				<mat-error *ngIf="form.controls.poll_time.hasError('min')">
+					Must be at least 1 minute
+				</mat-error>
+			</mat-form-field>
+		</div>
+
+		<mat-slide-toggle formControlName="active">Active</mat-slide-toggle>
+
+		<div class="fp-form-actions">
+			<button mat-flat-button color="primary" type="submit">
+				{{ isEditMode ? 'Save changes' : 'Create IOC' }}
+			</button>
+
+			<button mat-stroked-button color="primary" type="button" routerLink="/iocs">
+				Cancel
+			</button>
+		</div>
+	</form>
+</fp-card>

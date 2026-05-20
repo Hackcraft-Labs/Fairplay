@@ -1,0 +1,31 @@
+.fp-list-header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: var(--fp-space-4);
+
+	@media (max-width: 720px) {
+		flex-direction: column;
+		align-items: flex-start;
+	}
+
+	a mat-icon {
+		margin-right: var(--fp-space-1);
+	}
+}
+
+.fp-item-link {
+	font-weight: 600;
+}
+
+.actions {
+	text-align: right;
+}
+
+.actions-content {
+	display: inline-flex;
+	align-items: center;
+	justify-content: flex-end;
+	gap: var(--fp-space-2);
+	white-space: nowrap;
+}

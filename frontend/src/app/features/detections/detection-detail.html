@@ -1,0 +1,65 @@
+<fp-card
+	*ngIf="detection as det"
+	[title]="'Detection details'"
+	[subtitle]="'Detailed metadata and external source context.'"
+>
+	<fp-loading-spinner [visible]="loading"></fp-loading-spinner>
+
+	<div class="fp-detail">
+		<section class="fp-detail-panel">
+			<h3>{{ det.name }}</h3>
+			<dl>
+				<div>
+					<dt>First seen</dt>
+					<dd>{{ det.initial_detection_time.text }}</dd>
+				</div>
+				<div>
+					<dt>Hash</dt>
+					<dd class="fp-mono">{{ det.file_hash }}</dd>
+				</div>
+			</dl>
+		</section>
+
+		<section class="fp-detail-panel">
+			<h3>Sources</h3>
+			<mat-chip-listbox *ngIf="det.sources.length > 0">
+				<mat-chip *ngFor="let src of det.sources">
+					{{ src }}
+				</mat-chip>
+			</mat-chip-listbox>
+			<p *ngIf="det.sources.length === 0">No sources recorded.</p>
+		</section>
+
+		<section class="fp-detail-panel">
+			<h3>Extra info</h3>
+			<div *ngIf="extraInfoEntries(det).length === 0">
+				No extra information recorded by collectors.
+			</div>
+
+			<ng-container *ngFor="let entry of extraInfoEntries(det)">
+				<h4>{{ entry[0] }}</h4>
+				<ul>
+					<li *ngFor="let line of entry[1] as extraLines">
+						<span class="fp-mono">{{ line }}</span>
+					</li>
+				</ul>
+			</ng-container>
+		</section>
+	</div>
+
+	<section class="fp-actions">
+		<button
+			mat-flat-button
+			color="primary"
+			[routerLink]="['/detections', det.file_hash, 'edit']"
+		>
+			<mat-icon>edit</mat-icon>
+			Edit
+		</button>
+
+		<button mat-flat-button color="warn" (click)="delete()">
+			<mat-icon>delete</mat-icon>
+			Delete
+		</button>
+	</section>
+</fp-card>

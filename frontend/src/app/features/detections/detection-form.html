@@ -1,0 +1,37 @@
+<fp-card
+	[title]="isEditMode ? 'Edit detection' : 'New detection'"
+	[subtitle]="isEditMode ? 'Update detection metadata' : 'Register a new detection manually'"
+>
+	<fp-loading-spinner [visible]="loading"></fp-loading-spinner>
+
+	<form [formGroup]="form" (ngSubmit)="submit()" class="fp-form" *ngIf="!loading">
+		<div class="fp-form-grid">
+			<mat-form-field appearance="outline">
+				<mat-label>Name</mat-label>
+				<input matInput formControlName="name" />
+				<mat-error *ngIf="form.controls.name.hasError('required')">
+					Name is required
+				</mat-error>
+			</mat-form-field>
+
+			<mat-form-field appearance="outline">
+				<mat-label>File hash</mat-label>
+				<input matInput formControlName="file_hash" />
+				<mat-hint>Use SHA256 hash for consistency.</mat-hint>
+				<mat-error *ngIf="form.controls.file_hash.hasError('required')">
+					Hash is required
+				</mat-error>
+			</mat-form-field>
+		</div>
+
+		<div class="fp-form-actions">
+			<button mat-flat-button color="primary" type="submit">
+				{{ isEditMode ? 'Save changes' : 'Create detection' }}
+			</button>
+
+			<button mat-stroked-button color="primary" type="button" routerLink="/detections">
+				Cancel
+			</button>
+		</div>
+	</form>
+</fp-card>

@@ -14,5 +14,6 @@ class Teams(Notifier):
                 self.get_key("webhook"))
             myTeamsMessage.text(str(text))
             myTeamsMessage.send()
-        except Exception as exc:
-            print(f"[{self.NAME}] {exc}\n")
+        except:
+            print("[!] Could not notify over {name}! Please check for sanity.".format(
+                name=self.NAME))

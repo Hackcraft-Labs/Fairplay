@@ -1,0 +1,50 @@
+<div class="fp-dashboard">
+	<header class="fp-page-header">
+		<div>
+			<h1 class="fp-page-title">Threat Intelligence Dashboard</h1>
+			<p class="fp-page-subtitle">Monitor IOC exposure and sample detections across external feeds.</p>
+		</div>
+	</header>
+
+	<fp-loading-spinner [visible]="loading"></fp-loading-spinner>
+
+	<div class="fp-dashboard-grid">
+		<div class="fp-dashboard-left">
+			<fp-card title="Detections" subtitle="Total known detections">
+				<div class="fp-kpi">
+					<span class="fp-kpi-value">{{ detectionsCount }}</span>
+					<span class="fp-kpi-label">unique samples tracked</span>
+				</div>
+			</fp-card>
+
+			<fp-card title="IOCs" subtitle="Monitored indicators">
+				<div class="fp-kpi">
+					<span class="fp-kpi-value">{{ iocsCount }}</span>
+					<span class="fp-kpi-label">{{ activeIocsCount }} currently active</span>
+				</div>
+			</fp-card>
+		</div>
+	
+		<fp-card title="Latest detections" subtitle="Most recent activity">
+			<fp-empty-state
+				*ngIf="!loading && latestDetections.length === 0"
+				icon="visibility_off"
+				title="No detections yet"
+				body="New exposure events from monitored platforms will appear here."
+			/>
+	
+			<ul *ngIf="latestDetections.length > 0" class="fp-latest-list">
+				<li *ngFor="let det of latestDetections">
+					<div class="top-row">
+						<div class="name">{{ det.name }}</div>
+						<span [class]="getStatusClass(det)">{{ getStatusLabel(det) }}</span>
+					</div>
+					<div class="hash">{{ det.file_hash }}</div>
+					<div class="time">
+						{{ det.initial_detection_time.text }}
+					</div>
+				</li>
+			</ul>
+		</fp-card>
+	</div>
+</div>

@@ -1,10 +1,10 @@
-from config import verify_config_key, get_config_key, get_config
-from event import Events, subscribe_to_event
-
-import traceback
 import importlib
 import logging
 import os
+import traceback
+
+from config import get_config, get_config_key, verify_config_key
+from event import Events, subscribe_to_event
 
 modules = {}
 

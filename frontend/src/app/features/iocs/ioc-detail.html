@@ -1,0 +1,61 @@
+<fp-card
+	*ngIf="ioc as i"
+	[title]="'IOC details'"
+	[subtitle]="'Indicator configuration and metadata.'"
+>
+	<fp-loading-spinner [visible]="loading"></fp-loading-spinner>
+
+	<div class="fp-detail">
+		<section class="fp-detail-panel">
+			<h3>{{ i.name }}</h3>
+			<dl>
+				<div>
+					<dt>Name</dt>
+					<dd>{{ i.name }}</dd>
+				</div>
+				<div>
+					<dt>File hash</dt>
+					<dd class="fp-mono">{{ i.file_hash }}</dd>
+				</div>
+				<div>
+					<dt>Poll interval</dt>
+					<dd>{{ i.poll_time }} minutes</dd>
+				</div>
+				<div>
+					<dt>Status</dt>
+					<dd>
+						<span class="fp-badge" [class.fp-badge--success]="i.active !== false" [class.fp-badge--warning]="i.active === false">
+							{{ i.active !== false ? 'Active' : 'Paused' }}
+						</span>
+					</dd>
+				</div>
+			</dl>
+		</section>
+
+		<section *ngIf="metadataEntries(i).length > 0" class="fp-detail-panel">
+			<h3>Extra metadata</h3>
+			<dl>
+				<div *ngFor="let entry of metadataEntries(i)">
+					<dt>{{ entry[0] }}</dt>
+					<dd>{{ entry[1] | json }}</dd>
+				</div>
+			</dl>
+		</section>
+	</div>
+
+	<section class="fp-actions">
+		<button
+			mat-flat-button
+			color="primary"
+			[routerLink]="['/iocs', i.name, 'edit']"
+		>
+			<mat-icon>edit</mat-icon>
+			Edit
+		</button>
+
+		<button mat-flat-button color="warn" (click)="delete()">
+			<mat-icon>delete</mat-icon>
+			Delete
+		</button>
+	</section>
+</fp-card>

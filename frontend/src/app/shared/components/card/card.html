@@ -1,0 +1,16 @@
+<mat-card class="fp-card">
+	@if (title || subtitle) {
+		<mat-card-header>
+			@if (title) {
+				<mat-card-title>{{ title }}</mat-card-title>
+			}
+			@if (subtitle) {
+				<mat-card-subtitle>{{ subtitle }}</mat-card-subtitle>
+			}
+		</mat-card-header>
+	}
+
+	<mat-card-content>
+		<ng-content></ng-content>
+	</mat-card-content>
+</mat-card>
